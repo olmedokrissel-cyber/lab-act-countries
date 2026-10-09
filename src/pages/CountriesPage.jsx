@@ -1,12 +1,22 @@
 import { Link } from "react-router";
 import COUNTRIES from "../data/countries";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+
+
+const { pathname, state } = useLocation();
+ const navigate = useNavigate();
+ const [notice] = useState(state?.missingCode ?? null);
+ useEffect(() => {
+ if (state?.missingCode) navigate(pathname, { replace: true, state: null
+});
+ }, [state, pathname, navigate]);
 
 const CountriesPage = () => {
   const { state } = useLocation();
   return (
     <div className="max-w-4xl mx-auto">
-      state?.missingCode && (
+     notice && (
  <div className="alert alert-warning mb-4">
  <span>
  We don&apos;t have a country with code &quot;{state.missingCode}&
