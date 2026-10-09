@@ -5,6 +5,7 @@ import COUNTRIES from "../data/countries";
 const CountryDetailPage = () => {
 const { countryCode } = useParams();
  const navigate = useNavigate();
+ 
  const country = COUNTRIES.find((c) => c.code === countryCode.toUpperCase());
         if (!country) {return (
             <div className="max-w-md mx-auto py-10 text-center space-y-4">
